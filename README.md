@@ -1,5 +1,5 @@
 # Laravel Firebase Sync
-## Synchronize your Eloquent models with the [Firebase realtime database](https://firebase.google.com/docs/database/)
+## Synchronize your Eloquent models with the [Firebase Realtime Database](https://firebase.google.com/docs/database/)
 
 ![image](http://img.shields.io/packagist/v/mpociot/laravel-firebase-sync.svg?style=flat)
 ![image](http://img.shields.io/packagist/l/mpociot/laravel-firebase-sync.svg?style=flat)
