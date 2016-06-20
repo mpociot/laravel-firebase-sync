@@ -51,11 +51,10 @@ trait SyncsWithFirebase
         }
         $path = $this->getTable() . '/' . $this->getKey();
 
-        if ($mode === 'set') {
-            $this->firebaseClient->set($path, $this->fresh()->toArray());
-        } elseif ($mode === 'update') {
-            ;
-            $this->firebaseClient->update($path, $this->fresh()->toArray());
+        if ($mode === 'set' && $fresh = $this->fresh()) {
+            $this->firebaseClient->set($path, $fresh->toArray());
+        } elseif ($mode === 'update' && $fresh = $this->fresh()) {
+            $this->firebaseClient->update($path, $fresh->toArray());
         } elseif ($mode === 'delete') {
             $this->firebaseClient->delete($path);
         }
