@@ -33,10 +33,15 @@ This package requires you to add the following section to your `config/services.
 
 ```php
 'firebase' => [
-    'secret' => 'your-database-secret',
+    'api_key' => 'API_KEY', // Only used for JS integration
+    'auth_domain' => 'AUTH_DOMAIN', // Only used for JS integration
     'database_url' => 'https://your-database-at.firebaseio.com',
+    'secret' => 'DATABASE_SECRET',
+    'storage_bucket' => 'STORAGE_BUCKET', // Only used for JS integration
 ]
 ```
+
+**Note**: This package only requires the configuration keys `database_url` and `secret`. The other keys are only necessary if you want to also use the firebase JS API. 
 
 ### Synchronizing models
 
