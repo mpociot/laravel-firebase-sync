@@ -1,0 +1,40 @@
+{
+    "name": "mpociot/laravel-firebase-sync",
+    "license": "MIT",
+    "description": "Synchronize your Eloquent models with a Firebase realtime database.",
+    "keywords": [
+        "firebase",
+        "eloquent",
+        "laravel"
+    ],
+    "homepage": "http://github.com/mpociot/laravel-firebase-sync",
+    "authors": [
+        {
+            "name": "Marcel Pociot",
+            "email": "m.pociot@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mpociot/laravel-firebase-sync/issues",
+        "source": "https://github.com/mpociot/laravel-firebase-sync"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0",
+        "ktamas77/firebase-php": "^2.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mpociot\\Firebase": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mpociot\\Firebase\\Tests\\": "tests/"
+        }
+    }
+}
