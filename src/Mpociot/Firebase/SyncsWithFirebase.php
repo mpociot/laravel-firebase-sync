@@ -42,6 +42,17 @@ trait SyncsWithFirebase
     }
 
     /**
+     * @return array
+     */
+    protected function getFirebaseSyncData()
+    {
+        if ($fresh = $this->fresh()) {
+            return $fresh->toArray();
+        }
+        return [];
+    }
+
+    /**
      * @param $mode
      */
     protected function saveToFirebase($mode)
@@ -51,10 +62,10 @@ trait SyncsWithFirebase
         }
         $path = $this->getTable() . '/' . $this->getKey();
 
-        if ($mode === 'set' && $fresh = $this->fresh()) {
-            $this->firebaseClient->set($path, $fresh->toArray());
-        } elseif ($mode === 'update' && $fresh = $this->fresh()) {
-            $this->firebaseClient->update($path, $fresh->toArray());
+        if ($mode === 'set') {
+            $this->firebaseClient->set($path, $this->getFirebaseSyncData());
+        } elseif ($mode === 'update') {
+            $this->firebaseClient->update($path, $this->getFirebaseSyncData());
         } elseif ($mode === 'delete') {
             $this->firebaseClient->delete($path);
         }
