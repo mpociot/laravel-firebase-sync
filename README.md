@@ -13,6 +13,7 @@
 - [License](#license)
 
 <a name="installation" />
+
 ## Installation
 
 In order to add Laravel Firebase Sync to your project, just add
@@ -25,6 +26,7 @@ Or run `composer require mpociot/laravel-firebase-sync ` if you prefer that.
 
 
 <a name="usage" />
+
 ## Usage
 
 ### Configuration
@@ -63,6 +65,7 @@ If you need more control over the data that gets synchronized with Firebase, you
 
 
 <a name="license" />
+
 ## License
 
 Laravel Firebase Sync is free software distributed under the terms of the MIT license.
