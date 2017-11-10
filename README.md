@@ -61,7 +61,7 @@ class User extends Model {
 
 The data that will be synchronized is the array representation of your model. That means that you can modify the data using the existing Eloquent model attributes like `visible`, `hidden` or `appends`.
 
-If you need more control over the data that gets synchronized with Firebase, you can override the `getFirebaseSyncData` of the `SyncsWithFirebase` trait and let it return the array data you want to send to Firebase.
+If you need more control over the data that gets synchronized with Firebase, you can override the `toArray` of your model class and let it return the array data you want to send to Firebase.
 
 
 <a name="license" />
