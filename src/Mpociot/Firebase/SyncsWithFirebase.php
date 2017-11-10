@@ -23,16 +23,25 @@ trait SyncsWithFirebase
     public static function bootSyncsWithFirebase()
     {
         static::created(function ($model) {
-            $model->saveToFirebase('set');
+            try {
+                $model->saveToFirebase('set');
+            } catch (\Exception $e) {
+                \Log::critical($e);
+            }
         });
         static::updated(function ($model) {
-            $model->saveToFirebase('update');
+            try {
+                $model->saveToFirebase('update');
+            } catch (\Exception $e) {
+                \Log::critical($e);
+            }
         });
         static::deleted(function ($model) {
-            $model->saveToFirebase('delete');
-        });
-        static::restored(function ($model) {
-            $model->saveToFirebase('set');
+            try {
+                $model->saveToFirebase('delete');
+            } catch (\Exception $e) {
+                \Log::critical($e);
+            }
         });
     }
 
