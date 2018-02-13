@@ -31,9 +31,11 @@ trait SyncsWithFirebase
         static::deleted(function ($model) {
             $model->saveToFirebase('delete');
         });
-        static::restored(function ($model) {
-            $model->saveToFirebase('set');
-        });
+        if(in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses(self::class))){
+            static::restored(function ($model) {
+                $model->saveToFirebase('set');
+            });
+        }
     }
 
     /**
