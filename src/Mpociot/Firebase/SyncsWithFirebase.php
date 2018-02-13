@@ -56,6 +56,13 @@ trait SyncsWithFirebase
     }
 
     /**
+     * Manually sync to firebase
+     */
+    public function syncWithFirebase(){
+        $this->saveToFirebase('update');
+    }
+    
+    /**
      * @param $mode
      */
     protected function saveToFirebase($mode)
