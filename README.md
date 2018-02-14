@@ -72,6 +72,18 @@ The data that will be synchronized is the array representation of your model. Th
 
 If you need more control over the data that gets synchronized with Firebase, you can override the `getFirebaseSyncData` of the `SyncsWithFirebase` trait and let it return the array data you want to send to Firebase.
 
+#### Manual synchronization
+You can force a model to sync with Firebase via the `syncWithFirebase` method:
+```php
+$u = \App\User::find(1);
+$u->syncWithFirebase();
+```
+
+The trait also extends the default Collection allowing bulk synchronizations:
+```php
+// Please note that a bulk action like this should be avoided on large datasets, it's just an example
+\App\User::all()->syncWithFirebase();
+```
 
 <a name="license" />
 
