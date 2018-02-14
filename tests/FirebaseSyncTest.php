@@ -46,7 +46,7 @@ class FirebaseSyncTest extends Orchestra\Testbench\TestCase
         $user->setFirebaseClient($firebaseStub);
         $user->save();
 
-        $this->seeInDatabase('users', [
+        $this->assertDatabaseHas('users', [
             'name' => 'Foo'
         ]);
     }
@@ -74,7 +74,7 @@ class FirebaseSyncTest extends Orchestra\Testbench\TestCase
         $user->name = 'Bar';
         $user->save();
 
-        $this->seeInDatabase('users', [
+        $this->assertDatabaseHas('users', [
             'name' => 'Bar'
         ]);
     }
@@ -101,7 +101,7 @@ class FirebaseSyncTest extends Orchestra\Testbench\TestCase
         $user->setFirebaseClient($firebaseStub);
         $user->delete();
 
-        $this->notSeeInDatabase('users', [
+        $this->assertDatabaseMissing('users', [
             'name' => 'Foo'
         ]);
     }
