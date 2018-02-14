@@ -63,6 +63,17 @@ trait SyncsWithFirebase
     public function syncWithFirebase(){
         $this->saveToFirebase('update');
     }
+
+    /**
+     * Automatically casts Collection to SyncsWithFirebaseCollection
+     * to allow bulk syncWithFirebase
+     * @param array $models
+     * @return SyncsWithFirebaseCollection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new SyncsWithFirebaseCollection($models);
+    }
     
     /**
      * @param $mode
