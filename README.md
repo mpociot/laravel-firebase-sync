@@ -35,15 +35,24 @@ This package requires you to add the following section to your `config/services.
 
 ```php
 'firebase' => [
-    'api_key' => 'API_KEY', // Only used for JS integration
-    'auth_domain' => 'AUTH_DOMAIN', // Only used for JS integration
-    'database_url' => 'https://your-database-at.firebaseio.com',
-    'secret' => 'DATABASE_SECRET',
-    'storage_bucket' => 'STORAGE_BUCKET', // Only used for JS integration
-]
+        'api_key' => env('FIREBASE_API_KEY',''), // Only used for JS integration
+        'auth_domain' => env('FIREBASE_AUTH_DOMAIN',''), // Only used for JS integration
+        'database_url' => env('FIREBASE_DB_URL',''),
+        'secret' => env('FIREBASE_DATABASE_SECRET',''),
+        'storage_bucket' => env('FIREBASE_STORAGE_BUCKET',''), // Only used for JS integration
+    ]
 ```
 
+add the fillowing keys to your `.env` file, and set it with your own configuration.
+```
+FIREBASE_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx #normally begins with AIza...
+FIREBASE_AUTH_DOMAIN=foo-bar-baz.firebaseapp.com
+FIREBASE_DB_URL='https://foo-bar-baz.firebaseio.com'
+FIREBASE_STORAGE_BUCKET=foo-bar-baz.appspot.com
+FIREBASE_DATABASE_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
 **Note**: This package only requires the configuration keys `database_url` and `secret`. The other keys are only necessary if you want to also use the firebase JS API. 
+
 
 ### Synchronizing models
 
@@ -63,6 +72,18 @@ The data that will be synchronized is the array representation of your model. Th
 
 If you need more control over the data that gets synchronized with Firebase, you can override the `getFirebaseSyncData` of the `SyncsWithFirebase` trait and let it return the array data you want to send to Firebase.
 
+#### Manual synchronization
+You can force a model to sync with Firebase via the `syncWithFirebase` method:
+```php
+$u = \App\User::find(1);
+$u->syncWithFirebase();
+```
+
+The trait also extends the default Collection allowing bulk synchronizations:
+```php
+// Please note that a bulk action like this should be avoided on large datasets, it's just an example
+\App\User::all()->syncWithFirebase();
+```
 
 <a name="license" />
 

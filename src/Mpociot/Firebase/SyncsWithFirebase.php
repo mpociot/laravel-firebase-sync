@@ -31,9 +31,11 @@ trait SyncsWithFirebase
         static::deleted(function ($model) {
             $model->saveToFirebase('delete');
         });
-        static::restored(function ($model) {
-            $model->saveToFirebase('set');
-        });
+        if(in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses(self::class))){
+            static::restored(function ($model) {
+                $model->saveToFirebase('set');
+            });
+        }
     }
 
     /**
@@ -55,6 +57,24 @@ trait SyncsWithFirebase
         return [];
     }
 
+    /**
+     * Manually sync to firebase
+     */
+    public function syncWithFirebase(){
+        $this->saveToFirebase('update');
+    }
+
+    /**
+     * Automatically casts Collection to SyncsWithFirebaseCollection
+     * to allow bulk syncWithFirebase
+     * @param array $models
+     * @return SyncsWithFirebaseCollection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new SyncsWithFirebaseCollection($models);
+    }
+    
     /**
      * @param $mode
      */
