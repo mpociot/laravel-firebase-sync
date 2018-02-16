@@ -1,7 +1,7 @@
 <?php
 namespace Mpociot\Firebase;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 class SyncsWithFirebaseCollection extends Collection
 {
